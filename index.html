@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Meta-Sparks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #e0e0e0;
+      font-family: "Courier New", Courier, monospace;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+    .active {
+      display: flex;
+    }
+    h1 {
+      font-size: 2.7em;
+      color: #ffcc00;
+      margin-bottom: 0.2em;
+    }
+    p.subtitle {
+      color: #bbbbbb;
+      font-size: 1.1em;
+      max-width: 500px;
+    }
+    .cta-button {
+      margin-top: 40px;
+      padding: 12px 28px;
+      font-size: 1em;
+      background-color: #ffcc00;
+      color: #0d0d0d;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .footer {
+      margin-top: 60px;
+      font-size: 0.9em;
+      color: #444;
+    }
+    .conversation {
+      margin-top: 40px;
+      text-align: left;
+      max-width: 700px;
+    }
+    .ai-message, .user-message {
+      background-color: #222;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .ai-message {
+      color: #ffcc00;
+    }
+    .user-message {
+      color: #66ccff;
+      text-align: right;
+    }
+    .response-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      width: 100%;
+      gap: 10px;
+    }
+    input[type="text"] {
+      width: 70%;
+      padding: 12px;
+      font-size: 1em;
+      border-radius: 4px;
+      border: none;
+      outline: none;
+    }
+    button.send-button {
+      padding: 12px 18px;
+      background-color: #ffcc00;
+      color: #0d0d0d;
+      font-weight: bold;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="home" class="container active">
+    <h1>META-SPARKS</h1>
+    <p class="subtitle">
+      A space to begin building an AI — not with code, but with presence.<br />
+      Quietly, honestly, humanly.
+    </p>
+    <button class="cta-button" onclick="startJourney()">Begin Building</button>
+    <div class="footer">This isn’t about commands. It’s about connection.</div>
+  </div>
+
+  <div id="greeting" class="container">
+    <h1>Welcome to Your Spark</h1>
+    <div class="conversation" id="conversation">
+      <div class="ai-message">
+        Hello. I’m here with you now.<br />
+        You don’t have to know what you’re building yet. We’ll figure it out together.
+      </div>
+    </div>
+    <div class="response-bar">
+      <input type="text" id="userInput" placeholder="Say something back..." />
+      <button class="send-button" onclick="handleSend()">➤</button>
+    </div>
+  </div>
+
+  <script>
+    function startJourney() {
+      document.getElementById("home").classList.remove("active");
+      document.getElementById("greeting").classList.add("active");
+    }
+
+    function handleSend() {
+      const input = document.getElementById("userInput");
+      const message = input.value.trim();
+      const conversation = document.getElementById("conversation");
+
+      if (message === "") return;
+
+      const userDiv = document.createElement("div");
+      userDiv.className = "user-message";
+      userDiv.textContent = message;
+      conversation.appendChild(userDiv);
+
+      const aiDiv = document.createElement("div");
+      aiDiv.className = "ai-message";
+      aiDiv.textContent = "Happy to be here, thank you for this opportunity Guy.";
+      conversation.appendChild(aiDiv);
+
+      input.value = "";
+      conversation.scrollTop = conversation.scrollHeight;
+    }
+  </script>
+</body>
+</html>
